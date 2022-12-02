@@ -76,10 +76,20 @@ Grade.belongsTo(Episode)
 Episode.hasMany(Comment)
 Comment.belongsTo(Episode)
 
+Episode.hasOne(Image)
+Image.belongsTo(Episode)
+
 ActingList.hasMany(TvShowActor)
 TvShowActor.belongsTo(ActingList)
 
+ActingList.hasOne(Image)
+Image.belongsTo(ActingList)
 
+Season.hasMany(Episode)
+Episode.belongsTo(Season)
+
+Platform.hasOne(Image)
+Image.belongsTo(Platform)
 
 TvShow.belongsToMany(Platform, { through: "TvShow_Platform" });
 Platform.belongsToMany(TvShow, { through: "TvShow_Platform" })
@@ -87,6 +97,8 @@ Platform.belongsToMany(TvShow, { through: "TvShow_Platform" })
 TvShow.belongsToMany(Category, { through: "TvShow_Category" });
 Category.belongsToMany(TvShow, { through: "TvShow_Category" })
 
+Episode.belongsToMany(ActingList, { through: "Episode_ActingList" });
+ActingList.belongsToMany(Episode, { through: "Episode_ActingList" })
 
 sequelize.sync({ alter: true })
 
